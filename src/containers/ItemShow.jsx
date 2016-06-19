@@ -5,16 +5,20 @@ import ItemList from '../components/ItemList';
 
 class ItemShow extends Component {
   render() {
-	  const { goods } = this.props
+	  const { goodList } = this.props
+	  console.log('goods in contern:',goodList);
 	  return (
-		 <ItemList goods={goods} />
+		 <ItemList goods={goodList} />
 	  )
   }
 }
 
 function mapStateToProps(state, props) {
+	const {entities: { goods }, ids} = state;
+	
+	const goodList = ids.map(id => goods[id]);
 	return {
-		goods: state.goods
+		goodList: goodList
 	}
 }
 export default connect(

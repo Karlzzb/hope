@@ -12,7 +12,7 @@ function goodsShow(state = defaultState, action) {
           var normalizedGoods = normalize(action.goodsList,allGoodsSchema);
           console.log('normalizedGoods analyse:',normalizedGoods);
           //var nextState = state.mergeDeep(state, normalizedGoods.entities);
-          var nextState =  Object.assign({}, state,normalizedGoods.entities);
+          var nextState =  Object.assign({}, state,{entities: normalizedGoods.entities, ids: normalizedGoods.result.all_goods});
 
           return nextState;
     default:
