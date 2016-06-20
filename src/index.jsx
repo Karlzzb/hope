@@ -1,13 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
-import Root from './containers/ItemShow'
-import { createStore, applyMiddleware } from 'redux'
-import rootReducer from './reducers/RootReducer'
-import {logger, crashReporter} from './middleware/logger'
-import { Schema, arrayOf, normalize } from 'normalizr'
+import Root from './containers/ItemShow';
 import { Provider } from 'react-redux';
+import configureStore from './store/configureStore'
 import { SHOW_GOODS, showGoods } from './actions/Action-Creators';
 
 const itemList = {all_goods:[
@@ -63,7 +58,8 @@ const itemList = {all_goods:[
 	]	
 	}
 ]};
-let store = createStore(rootReducer, applyMiddleware(logger, crashReporter));
+
+const store = configureStore();
 
 store.dispatch(showGoods(itemList));
 	
