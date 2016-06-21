@@ -1,9 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Root from './containers/ItemShow';
-import { Provider } from 'react-redux';
+import Root from './containers/Root';
 import configureStore from './store/configureStore'
-import { SHOW_GOODS, showGoods } from './actions/Action-Creators';
+import { showGoods } from './actions/Action-Creators';
+import { browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
+
 
 const itemList = {all_goods:[
     {goods_id:1, 
@@ -60,13 +62,12 @@ const itemList = {all_goods:[
 ]};
 
 const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store)
 
 store.dispatch(showGoods(itemList));
 	
 render(
-  <Provider store={store}>
-    <Root />
-  </Provider>,
+ <Root store={store} history={history} />,
   document.getElementById('root')
 )
 
