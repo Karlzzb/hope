@@ -1,14 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ActionCreators from '../actions/Action-Creators'
-import ItemList from '../components/ItemList';
+import GoodsList from '../components/GoodsList';
 
-class ItemShow extends Component {
+class BestSellerShow extends Component {
   render() {
 	  const { goodList } = this.props
-	  console.log('goods in contern:',goodList);
 	  return (
-		 <ItemList goods={goodList} />
+		 <GoodsList allGoods={goodsArray} />
 	  )
   }
 }
@@ -16,12 +15,13 @@ class ItemShow extends Component {
 function mapStateToProps(state, props) {
 	const {entities: { goods }, ids} = state;
 	
-	const goodList = ids.map(id => goods[id]);
+	const goodsArray = ids.map(id => goods[id]);
 	return {
-		goodList: goodList
+		goodsArray: goodsArray
 	}
 }
+
 export default connect(
 	mapStateToProps
-)(ItemShow)
+)(BestSellerShow)
 
