@@ -11,8 +11,10 @@ function goodsShow(state = defaultState, action) {
       case SHOW_GOODS:
           var normalizedGoods = normalize(action.goodsList,allGoodsSchema);
           console.log('normalizedGoods analyse:',normalizedGoods);
-          //var nextState = state.mergeDeep(state, normalizedGoods.entities);
-          var nextState =  Object.assign({}, state,{entities: normalizedGoods.entities, ids: normalizedGoods.result.all_goods});
+          //USE PLAIN JS OBJECT
+          #var nextState =  Object.assign({}, state,{entities: normalizedGoods.entities, ids: normalizedGoods.result.all_goods});
+          //USE IMMUTABLE
+          var nextState = state.merge({entities: normalizedGoods.entities, ids: normalizedGoods.result.all_goods});
 
           return nextState;
     default:
