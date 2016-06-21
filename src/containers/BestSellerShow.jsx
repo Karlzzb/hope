@@ -5,7 +5,7 @@ import GoodsList from '../components/GoodsList';
 
 class BestSellerShow extends Component {
   render() {
-	  const { goodList } = this.props
+	  const { goodsArray } = this.props
 	  return (
 		 <GoodsList allGoods={goodsArray} />
 	  )
@@ -25,3 +25,6 @@ export default connect(
 	mapStateToProps
 )(BestSellerShow)
 
+BestSellerShow.propTypes = {
+    goodsArray: PropTypes.array.isRequired
+}
