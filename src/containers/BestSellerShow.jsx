@@ -7,7 +7,7 @@ class BestSellerShow extends Component {
   render() {
 	  const { goodsArray } = this.props
 	  return (
-		 <GoodsList allGoods={goodsArray} />
+		 <GoodsList showGoods={goodsArray} />
 	  )
   }
 }
