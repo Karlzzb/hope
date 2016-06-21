@@ -7,28 +7,29 @@
     "start": "node server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\""
   },
- "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/Karlzzb/hope.git"
-  },  
+  },
   "keywords": [],
   "author": "Karlzzb",
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "^6.3.14",
     "humps": "^0.6.0",
+    "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.1.1",
     "lodash": "^4.0.0",
     "normalizr": "^2.0.0",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "react-redux": "^4.2.1",
-    "react-router": "2.0.0",
-    "react-router-redux": "^4.0.0-rc.1",
-    "redux": "^3.2.1",
-    "redux-logger": "^2.4.0",
-    "redux-thunk": "^1.0.3",
-    "immutable": "^3.8.1"
+    "normalizr-immutable": "0.0.3",
+    "react": "^15.1.0",
+    "react-addons-pure-render-mixin": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.4.1",
+    "react-router-redux": "^4.0.5",
+    "redux": "^3.5.2",
+    "redux-thunk": "^1.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.3.15",
@@ -51,5 +52,5 @@
       "es2015",
       "react"
     ]
-  }  
+  }
 }

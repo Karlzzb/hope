@@ -15,37 +15,39 @@ class BestSellerShow extends Component {
   }
   
   loadBest() {
-  	
+      
   }
   
   loadRecommend() {
-  	
+      
   }
   
   loadTypes() {
-  	
+      
   }
-	
+    
   render() {
-	  const { goodsArray } = this.props
-	  return (
-	  	<Topbar onLoadBest={this.loadBest} onLoadRecommend={this.loadRecommend} onLoadTypes={this.loadTypes} {...this.props} />
-		<GoodsList showGoods={goodsArray} />
-	  )
+      const { goodsArray } = this.props
+      return (
+        <div className="main">
+          <Topbar onLoadBest={this.loadBest} onLoadRecommend={this.loadRecommend} onLoadTypes={this.loadTypes} {...this.props} />
+        <GoodsList showGoods={goodsArray} />
+        </div>
+      )
   }
 }
 
 function mapStateToProps(state, props) {
-	const {entities: { goods }, ids} = state;
-	
-	const goodsArray = ids.map(id => goods[id]);
-	return {
-		goodsArray: goodsArray
-	}
+    const {entities: { goods }, ids} = state;
+    
+    const goodsArray = ids.map(id => goods[id]);
+    return {
+        goodsArray: goodsArray
+    }
 }
 
 export default connect(
-	mapStateToProps
+    mapStateToProps
 )(BestSellerShow)
 
 BestSellerShow.propTypes = {

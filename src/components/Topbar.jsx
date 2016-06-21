@@ -10,18 +10,18 @@ export default class TopBar extends Component {
   
   render() {
     return(
-    	<div className="topbar">
-    	<button onClick={this.props.onLoadBest} disabled=this.props.isBestLoaded>
-    	  <h1>Best</h1>
-    	</button>
-    	<button onClick={this.props.onLoadRecommend} disabled=this.props.isRecommendLoaded>
-    	  <h1>Recommend</h1>
-    	</button>
-    	<button onClick={this.props.onLoadTypes} disabled=this.props.isTypesLoaded>
-    	  <h1>classfication</h1>
-    	</button>
-    	</div>
-	    )
+        <div className="topbar">
+        <button onClick={this.props.onLoadBest} disabled={this.props.isBestLoaded}>
+          <h1>Best</h1>
+        </button>
+        <button onClick={this.props.onLoadRecommend} disabled={this.props.isRecommendLoaded}>
+          <h1>Recommend</h1>
+        </button>
+        <button onClick={this.props.onLoadTypes} disabled={this.props.isTypesLoaded}>
+          <h1>classfication</h1>
+        </button>
+        </div>
+        )
   }
 }
 

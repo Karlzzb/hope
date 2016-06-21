@@ -4,7 +4,7 @@ import createLogger from 'redux-logger'
 import rootReducer from '../reducers/RootReducer'
 import DevTools from '../containers/DevTools'
 
-export default function configureStore(preloadedState) {
+export default function configureStore(preloadedState = {}) {
   const store = createStore(
     rootReducer,
     preloadedState,
