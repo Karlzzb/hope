@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ActionCreators from '../actions/Action-Creators';
 import GoodsList from '../components/GoodsList';
 import Topbar from '../components/Topbar';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class BestSellerShow extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class BestSellerShow extends Component {
     this.props.isBestLoaded = 'disabled';
     this.props.isRecommendLoaded = 'false';
     this.props.isTypesLoaded = 'false';
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
   
   loadBest() {
