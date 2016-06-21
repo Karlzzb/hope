@@ -1,13 +1,34 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import ActionCreators from '../actions/Action-Creators'
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import ActionCreators from '../actions/Action-Creators';
 import GoodsList from '../components/GoodsList';
+import Topbar from '../components/Topbar';
 
 class BestSellerShow extends Component {
+  constructor(props) {
+    super(props);
+    this.props.isBestLoaded = 'disabled';
+    this.props.isRecommendLoaded = 'false';
+    this.props.isTypesLoaded = 'false';
+  }
+  
+  loadBest() {
+  	
+  }
+  
+  loadRecommend() {
+  	
+  }
+  
+  loadTypes() {
+  	
+  }
+	
   render() {
 	  const { goodsArray } = this.props
 	  return (
-		 <GoodsList showGoods={goodsArray} />
+	  	<Topbar onLoadBest={this.loadBest} onLoadRecommend={this.loadRecommend} onLoadTypes={this.loadTypes} {...this.props} />
+		<GoodsList showGoods={goodsArray} />
 	  )
   }
 }
