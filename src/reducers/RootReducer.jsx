@@ -3,13 +3,13 @@ import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import { normalize, arrayOf } from 'normalizr';
 import { SHOW_GOODS, showGoods } from '../actions/Action-Creators';
-import { allGoodsSchema } from './Schema';
+import { schemas } from './Schema';
 
 const defaultState = Map({});
 function goodsShow(state = defaultState, action) {
   switch (action.type) {
       case SHOW_GOODS:
-          var normalizedGoods = normalize(action.goodsList,allGoodsSchema);
+          var normalizedGoods = normalize(action.goodsList,schemas.showGoods);
           console.log('normalizedGoods analyse:',normalizedGoods);
           //USE PLAIN JS OBJECT
           #var nextState =  Object.assign({}, state,{entities: normalizedGoods.entities, ids: normalizedGoods.result.all_goods});
