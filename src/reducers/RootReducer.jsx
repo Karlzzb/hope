@@ -1,23 +1,18 @@
-import {Map,List,fromJS} from 'immutable';
+import {Map,List,Record} from 'immutable';
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
-import { normalize, arrayOf } from 'normalizr-immutable';
-import { SHOW_GOODS, showGoods } from '../actions/Action-Creators';
-import { schemas } from './Schema';
+import { SHOW_GOODS } from '../actions/Action-Creators';
+import merge from 'lodash/merge'
 
-const defaultState = Map({});
+
+const defaultState = Map({goodsShow: {entities: new Record(), ids: new List()}});
 function goodsShow(state = defaultState, action) {
   switch (action.type) {
       case SHOW_GOODS:
-          var normalizedGoods = normalize(action.goodsList,arrayOf(schemas.goods),{});
-		  console.log('action :', action.goodsList)
-          console.log('normalizedGoods analyse:',normalizedGoods.toString());
-          //USE PLAIN JS OBJECT
-          //var nextState =  Object.assign({}, state,{entities: normalizedGoods.entities, ids: normalizedGoods.result.all_goods});
-          //USE IMMUTABLE
-          var nextState = state.merge({entities: normalizedGoods.entities, ids: normalizedGoods.result});
-
-          return nextState;
+	      if (action.goodsShow && action.goodsShow.entities) {
+			  console.log("merge: ", state.merge(action));
+			  return state.merge(action);
+		  }
     default:
       return state;      
   }

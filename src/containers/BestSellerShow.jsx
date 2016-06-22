@@ -38,7 +38,9 @@ class BestSellerShow extends Component {
 }
 
 function mapStateToProps(state, props) {
-    const {entities: { goods }, ids} = state;
+    const {goodsShow: {entities: { goods }, ids}} = state;
+	
+	console.log('analyze: ', state.goodsShow[0]);
     
     const goodsArray = ids.map(id => goods[id]);
     return {
