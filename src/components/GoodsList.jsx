@@ -1,15 +1,15 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 export default class GoodsList extends Component {
   getShowGoods() {
-	console.log(this.props.showGoods);
     return this.props.showGoods.map(this.renderGoods) || [];
   }
   
   renderGoods(goods) {
     let { goods_id, goods_name, description, goods_front_img, price } = goods;
     return (      
-        <div className="goodsTable">
+        <div className="goodsTable" key={goods_id}>
         <h3>
         {goods_name}
         </h3>
@@ -30,6 +30,6 @@ export default class GoodsList extends Component {
 }
 
 GoodsList.propTypes = {
-    showGoods: PropTypes.array.isRequired
+    showGoods: ImmutablePropTypes.list.isRequired
 }
     

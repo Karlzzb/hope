@@ -7,13 +7,30 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Sidebar from 'react-sidebar';
 import {Map} from 'immutable';
+import MaterialTitlePanel from '../components/material_title_panel';
+import SidebarContent from '../components/sidebar_content';
 
 class BestSellerShow extends Component {
   constructor(props) {
     super(props);
-	this.state = {topBarProps:Map({sidebarOpen: false, isBestLoaded: 'disabled', isRecommendLoaded: 'false', isTypesLoaded: 'false' })};
+	this.state = {topBarProps:Map({isBestLoaded: 'disabled', isRecommendLoaded: 'false', isTypesLoaded: 'false' }), sideBarProps: Map({sidebarOpen: false})};
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
+  
+  componentWillMount() {
+    var mql = window.matchMedia(`(min-width: 800px)`);
+    mql.addListener(this.mediaQueryChanged);
+    this.setState({mql: mql, sidebarDocked: mql.matches});
+  }
+
+  componentWillUnmount() {
+    this.state.mql.removeListener(this.mediaQueryChanged);
+  }
+
+  mediaQueryChanged() {
+    this.setState({sidebarDocked: this.state.mql.matches});
+  }
+
   
   loadBest() {
       
@@ -27,7 +44,7 @@ class BestSellerShow extends Component {
       
   }
   onSetSidebarOpen(open) {
-    this.setState({sidebarOpen: open});
+    this.setState({sideBarProps: Map({sidebarOpen: open})});
   }
     
   render() {
@@ -36,6 +53,20 @@ class BestSellerShow extends Component {
       return (
         <div className="main">
 		<Topbar onLoadBest={this.loadBest} onLoadRecommend={this.loadRecommend} onLoadTypes={this.loadTypes} topBarProps={this.state.topBarProps} />
+		
+		<div className="sidebar">
+        <Sidebar sidebar={sidebarContent}
+               open={this.state.sideBarProps.get('sidebarOpen')}
+               onSetOpen={this.onSetSidebarOpen}>
+        <b>Main content</b>
+		        <button onClick={this.onSetSidebarOpen} >
+          <h1>menu</h1>
+        </button>
+        </Sidebar>
+		</div>
+		
+
+
         <GoodsList showGoods={goodsArray} />
         </div>
       )
