@@ -1,17 +1,16 @@
-import {Map,List,Record} from 'immutable';
+import {Map,List,Record, fromJS} from 'immutable';
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import { SHOW_GOODS } from '../actions/Action-Creators';
-import merge from 'lodash/merge'
+import merge from 'lodash/merge';
 
 
-const defaultState = Map({goodsShow: {entities: new Record(), ids: new List()}});
+const defaultState = fromJS({});
 function goodsShow(state = defaultState, action) {
   switch (action.type) {
       case SHOW_GOODS:
 	      if (action.goodsShow && action.goodsShow.entities) {
-			  console.log("merge: ", state.merge(action));
-			  return state.merge(action);
+			  return state.merge(action.goodsShow);
 		  }
     default:
       return state;      

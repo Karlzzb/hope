@@ -4,13 +4,14 @@ import ActionCreators from '../actions/Action-Creators';
 import GoodsList from '../components/GoodsList';
 import Topbar from '../components/Topbar';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import Sidebar from 'react-sidebar';
+import {Map} from 'immutable';
 
 class BestSellerShow extends Component {
   constructor(props) {
     super(props);
-    this.props.isBestLoaded = 'disabled';
-    this.props.isRecommendLoaded = 'false';
-    this.props.isTypesLoaded = 'false';
+	this.state = {topBarProps:Map({sidebarOpen: false, isBestLoaded: 'disabled', isRecommendLoaded: 'false', isTypesLoaded: 'false' })};
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
   
@@ -25,12 +26,16 @@ class BestSellerShow extends Component {
   loadTypes() {
       
   }
+  onSetSidebarOpen(open) {
+    this.setState({sidebarOpen: open});
+  }
     
   render() {
-      const { goodsArray } = this.props
+      const { goodsArray } = this.props;
+	  var sidebarContent = <b>Sidebar content</b>;
       return (
         <div className="main">
-          <Topbar onLoadBest={this.loadBest} onLoadRecommend={this.loadRecommend} onLoadTypes={this.loadTypes} {...this.props} />
+		<Topbar onLoadBest={this.loadBest} onLoadRecommend={this.loadRecommend} onLoadTypes={this.loadTypes} topBarProps={this.state.topBarProps} />
         <GoodsList showGoods={goodsArray} />
         </div>
       )
@@ -38,11 +43,9 @@ class BestSellerShow extends Component {
 }
 
 function mapStateToProps(state, props) {
-    const {goodsShow: {entities: { goods }, ids}} = state;
-	
-	console.log('analyze: ', state.goodsShow[0]);
+	let goods = state.goodsShow.get('entities').goods;
     
-    const goodsArray = ids.map(id => goods[id]);
+    const goodsArray = state.goodsShow.get('ids').map(id => goods[id]);
     return {
         goodsArray: goodsArray
     }
@@ -53,5 +56,5 @@ export default connect(
 )(BestSellerShow)
 
 BestSellerShow.propTypes = {
-    goodsArray: PropTypes.array.isRequired
+    goodsArray: ImmutablePropTypes.list.isRequired
 }
