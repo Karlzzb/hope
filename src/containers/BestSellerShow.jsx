@@ -1,39 +1,22 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import ActionCreators from '../actions/Action-Creators';
+import {loadGoods} from '../actions/Action-Creators';
 import GoodsList from '../components/GoodsList';
 import Topbar from '../components/Topbar';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Sidebar from 'react-sidebar';
-import {Map} from 'immutable';
-import MaterialTitlePanel from '../components/material_title_panel';
-import SidebarContent from '../components/sidebar_content';
+import {Map, List} from 'immutable';
 
 class BestSellerShow extends Component {
   constructor(props) {
     super(props);
-	this.state = {topBarProps:Map({isBestLoaded: 'disabled', isRecommendLoaded: 'false', isTypesLoaded: 'false' }), sideBarProps: Map({sidebarOpen: false})};
+	this.state = {topBarProps:Map({isBestLoaded: false, isRecommendLoaded: false, isTypesLoaded: false })};
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+	this.loadBest = this.loadBest.bind(this);
   }
-  
-  componentWillMount() {
-    var mql = window.matchMedia(`(min-width: 800px)`);
-    mql.addListener(this.mediaQueryChanged);
-    this.setState({mql: mql, sidebarDocked: mql.matches});
-  }
-
-  componentWillUnmount() {
-    this.state.mql.removeListener(this.mediaQueryChanged);
-  }
-
-  mediaQueryChanged() {
-    this.setState({sidebarDocked: this.state.mql.matches});
-  }
-
   
   loadBest() {
-      
+	 this.props.loadGoods(); 
   }
   
   loadRecommend() {
@@ -53,19 +36,6 @@ class BestSellerShow extends Component {
       return (
         <div className="main">
 		<Topbar onLoadBest={this.loadBest} onLoadRecommend={this.loadRecommend} onLoadTypes={this.loadTypes} topBarProps={this.state.topBarProps} />
-		
-		<div className="sidebar">
-        <Sidebar sidebar={sidebarContent}
-               open={this.state.sideBarProps.get('sidebarOpen')}
-               onSetOpen={this.onSetSidebarOpen}>
-        <b>Main content</b>
-		        <button onClick={this.onSetSidebarOpen} >
-          <h1>menu</h1>
-        </button>
-        </Sidebar>
-		</div>
-		
-
 
         <GoodsList showGoods={goodsArray} />
         </div>
@@ -74,18 +44,24 @@ class BestSellerShow extends Component {
 }
 
 function mapStateToProps(state, props) {
-	let goods = state.goodsShow.get('entities').goods;
+	if(!state.bestSeller || !state.bestSeller.get('entities') || state.bestSeller.get('goodsIds').size < 1) {
+		return {goodsArray: List()}
+	}
+		
+	let goods = state.bestSeller.get('entities').goods;
     
-    const goodsArray = state.goodsShow.get('ids').map(id => goods[id]);
+    const goodsArray = state.bestSeller.get('goodsIds').map(id => goods[id]);
     return {
         goodsArray: goodsArray
     }
 }
 
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+	{loadGoods}
 )(BestSellerShow)
 
 BestSellerShow.propTypes = {
-    goodsArray: ImmutablePropTypes.list.isRequired
+    goodsArray: ImmutablePropTypes.list.isRequired,
+	loadGoods: PropTypes.func.isRequired
 }

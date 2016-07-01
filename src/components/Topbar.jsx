@@ -15,7 +15,7 @@ export default class TopBar extends Component {
         <button onClick={this.props.onLoadRecommend} disabled={this.props.topBarProps.get('isRecommendLoaded')}>
           <h1>Recommend</h1>
         </button>
-        <button onClick={this.props.onLoadTypes} disabled={this.props.topBarProps.get('sTypesLoaded')}>
+        <button onClick={this.props.onLoadTypes} disabled={this.props.topBarProps.get('isTypesLoaded')}>
           <h1>classfication</h1>
         </button>
         </div>
@@ -28,7 +28,7 @@ TopBar.propTypes = {
     onLoadRecommend: PropTypes.func.isRequired,
     onLoadTypes: PropTypes.func.isRequired,
 	topBarProps: ImmutablePropTypes.contains({
-      isBestLoaded: PropTypes.string.isRequired,
-      isRecommendLoaded: PropTypes.string.isRequired,
-      isTypesLoaded: PropTypes.string.isRequired	}).isRequired
+      isBestLoaded: PropTypes.bool.isRequired,
+      isRecommendLoaded: PropTypes.bool.isRequired,
+      isTypesLoaded: PropTypes.bool.isRequired	}).isRequired
 }
