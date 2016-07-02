@@ -21,8 +21,11 @@ export default class GoodsList extends Component {
   }
   
   render() {
+	const { isFetching } = this.props;
+	  
     return(       
        <div calssName="goodList">
+	   {isFetching ? 'Loading...' : 'newest'}
        {this.getShowGoods()}
        </div>
     )
@@ -30,6 +33,7 @@ export default class GoodsList extends Component {
 }
 
 GoodsList.propTypes = {
-    showGoods: ImmutablePropTypes.list.isRequired
+    showGoods: ImmutablePropTypes.list.isRequired,
+	isFetching: PropTypes.bool.isRequired
 }
     

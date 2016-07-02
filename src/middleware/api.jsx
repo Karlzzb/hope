@@ -81,16 +81,21 @@ export default store => next => action => {
     throw new Error('Expected action types to be strings.')
   }
   
+  function actionWith(data) {
+    const finalAction = Object.assign({}, action, data)
+    delete finalAction[CALL_API]
+    return finalAction
+  }  
+  
   const [ requestType, successType, failureType ] = types;
+  next(actionWith({ type: requestType }))
   
   const {goodsData, error} = callFetchGoods();
   
   let actionData = normalize(goodsData,arrayOf(schema),{});
   
-
-  
-    return next({
+  return next(actionWith({
     type: successType,
-	bestSeller: Map({entities: actionData.entities, goodsIds: actionData.result})});
+	bestSeller: Map({entities: actionData.entities, goodsIds: actionData.result})}));
 
 }

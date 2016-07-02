@@ -31,27 +31,33 @@ class BestSellerShow extends Component {
   }
     
   render() {
-      const { goodsArray } = this.props;
+      const { goodsArray, isFetching } = this.props;
 	  var sidebarContent = <b>Sidebar content</b>;
+	  	console.log('isFetching:',isFetching);
       return (
         <div className="main">
 		<Topbar onLoadBest={this.loadBest} onLoadRecommend={this.loadRecommend} onLoadTypes={this.loadTypes} topBarProps={this.state.topBarProps} />
 
-        <GoodsList showGoods={goodsArray} />
+        <GoodsList showGoods={goodsArray} isFetching={isFetching}/>
         </div>
       )
   }
 }
 
 function mapStateToProps(state, props) {
-	if(!state.bestSeller || !state.bestSeller.get('entities') || state.bestSeller.get('goodsIds').size < 1) {
-		return {goodsArray: List()}
+	const {bestSeller} = state;
+	
+	if(!bestSeller || !bestSeller.get('entities') || bestSeller.get('goodsIds').size < 1) {
+		return {
+			isFetching: bestSeller.get('isFetching'),goodsArray: List()
+			}
 	}
 		
-	let goods = state.bestSeller.get('entities').goods;
+	let goods = bestSeller.get('entities').goods;
     
-    const goodsArray = state.bestSeller.get('goodsIds').map(id => goods[id]);
+    const goodsArray = bestSeller.get('goodsIds').map(id => goods[id]);
     return {
+		isFetching: bestSeller.get('isFetching'),
         goodsArray: goodsArray
     }
 }
