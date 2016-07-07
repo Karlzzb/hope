@@ -73,7 +73,7 @@ module.exports = function(options) {
                 },
                 //.scss 文件使用 style-loader、css-loader 和 sass-loader 来编译处理
                 //对于css文件，默认情况下webpack会把css content内嵌到js里边，运行时会使用style标签内联
-                { test: /\.(less|css)$/, loader: 'style!css!less' },
+                { test: /\.(scss|css)$/, loader: 'style!css!sass' },
                 //图片文件使用 url-loader 来处理，小于8kb的直接转为base64
                 //{ test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'},
                 //图片资源在加载时先压缩，然后当内容size小于~10KB时，会自动转成base64的方式内嵌进去
@@ -174,8 +174,8 @@ module.exports = function(options) {
                         query: babelMerge(babelQueryBase)
                     },
                     {//单独打包css文件
-                        test: /\.less$/,
-                        loader:  ExtractTextPlugin.extract('style', 'css!autoprefixer!less')
+                        test: /\.scss$/,
+                        loader:  ExtractTextPlugin.extract('style', 'css!autoprefixer!sass')
                     }
                 ],
                 //noParse: ["react"]

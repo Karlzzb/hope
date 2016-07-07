@@ -24,7 +24,7 @@ export default class GoodsList extends Component {
 	const { isFetching } = this.props;
 	  
     return(       
-       <div calssName="goodList">
+       <div className="goodList">
 	   {isFetching ? 'Loading...' : 'newest'}
        {this.getShowGoods()}
        </div>

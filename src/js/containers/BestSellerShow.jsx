@@ -37,7 +37,7 @@ class BestSellerShow extends Component {
       return (
         <div className="main">
 		<Topbar onLoadBest={this.loadBest} onLoadRecommend={this.loadRecommend} onLoadTypes={this.loadTypes} topBarProps={this.state.topBarProps} />
-
+		<div>11111</div>
         <GoodsList showGoods={goodsArray} isFetching={isFetching}/>
         </div>
       )
