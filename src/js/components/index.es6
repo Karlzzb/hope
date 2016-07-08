@@ -4,6 +4,7 @@
 
 import Header from './Header/Header';
 import Menu from './Menu/Menu';
+
 //import Select from './Form/Select';
 //import DatePick from './Form/DatePick';
 //import Input from './Form/Input';
@@ -20,4 +21,6 @@ import Menu from './Menu/Menu';
 
 //export {Header,Menu,Select,DatePick,Input,Title,Button,DataTable,Loading,ButtonIcon,ButtonFlat,Dialog,Info,ConfirmDialog,Footer};
 
-export { Header, Menu }
+import {Tabs, Tab} from 'material-ui/Tabs';
+
+export { Header, Menu, Tabs, Tab }

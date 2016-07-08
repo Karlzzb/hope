@@ -3,7 +3,7 @@
  */
 
 export const appAN  = {
-	OPEN_MENU : "OPEN_MENU",
+	OPEN_MENU : "app/OPEN_MENU",
 };
 
 const appAct = {

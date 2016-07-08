@@ -3,5 +3,6 @@
  */
 
 import appAct from './app';
+import goodsAct from './goods';
 
-export { appAct }
+export { appAct, goodsAct }

@@ -34,7 +34,7 @@ const muiTheme = getMuiTheme({
 
 class Main extends Component {
 	render() {
-		const { menu, dispatch } = this.props;
+		const { menu, dispatch, children } = this.props;
 		return(
 			<MuiThemeProvider muiTheme={muiTheme}>
 				<div>
@@ -46,7 +46,7 @@ class Main extends Component {
 						show={ menu.show }
 						close={()=>dispatch(appAct.openMenu(false))}
 					/>
-					<div>11212</div>
+					{ children }
 				</div>
 			</MuiThemeProvider>
 		)
