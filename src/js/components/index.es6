@@ -3,7 +3,7 @@
  */
 
 import Header from './Header/Header';
-//import Menu from './Menu/Menu';
+import Menu from './Menu/Menu';
 //import Select from './Form/Select';
 //import DatePick from './Form/DatePick';
 //import Input from './Form/Input';
@@ -20,4 +20,4 @@ import Header from './Header/Header';
 
 //export {Header,Menu,Select,DatePick,Input,Title,Button,DataTable,Loading,ButtonIcon,ButtonFlat,Dialog,Info,ConfirmDialog,Footer};
 
-export { Header }
+export { Header, Menu }

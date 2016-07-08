@@ -18,7 +18,6 @@ import ContentSend from 'material-ui/svg-icons/content/send';
 export default class Menu extends React.Component {
 
 	render() {
-		const { menus } = this.props;
 		return (
 			<Drawer
 				docked={false}
@@ -32,27 +31,36 @@ export default class Menu extends React.Component {
 				/>
 
 				<List>
-					{menus.map(data => {
-						let childrenItmes = [];
-						{data.childMenu.map((childList,v) => {
-							let childrenItem = <Link to={childList.menuLink} key={childList.id}><ListItem
-								primaryText={childList.menuName}
-								leftIcon={<ActionGrade />}
-								onTouchTap={this.props.close}
-							/></Link>;
-							childrenItmes.push(childrenItem);
-						})}
-						return (
-							<ListItem
-								primaryText={data.menuName}
-								leftIcon={<ActionViewList />}
-								initiallyOpen={false}
-								key={data.id}
-								primaryTogglesNestedList={true}
-								nestedItems={childrenItmes}
-							/>
-						);
-					})}
+					<ListItem
+						primaryText="标题1"
+						leftIcon={<ActionViewList />}
+						initiallyOpen={false}
+						key={1}
+						primaryTogglesNestedList={true}
+						nestedItems={
+									<ListItem
+										primaryText="标题1"
+										leftIcon={<ActionGrade />}
+										onTouchTap={this.props.close}
+									/>
+								}
+					/>
+
+					<ListItem
+						primaryText="标题2"
+						leftIcon={<ActionViewList />}
+						initiallyOpen={false}
+						key={2}
+						primaryTogglesNestedList={true}
+					/>
+
+					<ListItem
+						primaryText="标题3"
+						leftIcon={<ActionViewList />}
+						initiallyOpen={false}
+						key={3}
+						primaryTogglesNestedList={true}
+					/>
 				</List>
 			</Drawer>
 		);

@@ -13,9 +13,10 @@ import {cyan500} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 //导入组件
-import { Header } from './../components';
+import { Header, Menu } from './../components';
 
 //导入action
+import { appAct } from './../actions';
 
 //导入样式
 import './../../style/main.scss';
@@ -32,17 +33,20 @@ const muiTheme = getMuiTheme({
 
 
 class Main extends Component {
-	//const { children } = this.props;
 	render() {
+		const { menu, dispatch } = this.props;
 		return(
 			<MuiThemeProvider muiTheme={muiTheme}>
 				<div>
 					<Header
 						title="TEST"
-						//openMenu={()=>dispatch(menuAction.openMenu(true))}
-						position="fixed"
+						openMenu={()=>dispatch(appAct.openMenu(true))}
 					/>
-
+					<Menu
+						show={ menu.show }
+						close={()=>dispatch(appAct.openMenu(false))}
+					/>
+					<div>11212</div>
 				</div>
 			</MuiThemeProvider>
 		)
@@ -50,6 +54,7 @@ class Main extends Component {
 }
 
 let mapStateToProps = state => ({
+	menu : state.appState.menu
 });
 
-export default connect(mapStateToProps)(Main);;
+export default connect(mapStateToProps)(Main);

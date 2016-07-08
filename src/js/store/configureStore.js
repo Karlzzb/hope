@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
-import rootReducer from '../reducers/RootReducer';
+import rootReducer from '../reducers';
 import api from '../middleware/api'
 
 
@@ -9,17 +9,6 @@ import api from '../middleware/api'
  * 所有中间件
  */
 let middleware = applyMiddleware(thunk, api, createLogger());
-
-/**
- * 所有reducer
- */
-//let rootReducer = combineReducers({
-//  requestState,
-//  workState,
-//  userState, //用户数据
-//  appState, //app公用数据
-//  routing: routerReducer
-//});
 
 //debug
 if (module.hot) {

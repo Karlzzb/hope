@@ -8,7 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-
+import FavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 
 export default class Header extends Component {
 
@@ -25,20 +25,9 @@ export default class Header extends Component {
 			<AppBar
 				title={this.props.title}
 				onLeftIconButtonTouchTap={this.props.openMenu}
-				iconElementRight={
-				<IconMenu
-					iconButtonElement={
-					  <IconButton><MoreVertIcon /></IconButton>
-					}
-					targetOrigin={{horizontal: 'right', vertical: 'top'}}
-					anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-				>
-					<MenuItem primaryText="退出" />
-				</IconMenu>
-				}
+				iconElementRight={<IconButton><FavoriteBorder /></IconButton>}
+				style={{textAlign: "center"}}
 			/>
 		);
 	}
 }
-
-export default Header;
