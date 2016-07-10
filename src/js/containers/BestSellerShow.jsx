@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {loadGoods} from '../actions/Action-Creators';
 import GoodsList from '../components/GoodsList';
 import Topbar from '../components/Topbar';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+//import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import {Map, List} from 'immutable';
 
@@ -11,7 +11,7 @@ class BestSellerShow extends Component {
   constructor(props) {
     super(props);
 	this.state = {topBarProps:Map({isBestLoaded: false, isRecommendLoaded: false, isTypesLoaded: false })};
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    //this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 	this.loadBest = this.loadBest.bind(this);
   }
   

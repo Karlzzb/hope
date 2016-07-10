@@ -111,6 +111,7 @@ module.exports = function(options) {
             devtool: "eval",// eval生成 sourcemap 的不同方式
             //入口文件,需要处理的文件路径
             entry: [
+                'babel-polyfill',
                 'webpack/hot/dev-server',
                 'webpack-dev-server/client?'+baseUrl,
                 //上面2个是开发的时候用的热替换服务器

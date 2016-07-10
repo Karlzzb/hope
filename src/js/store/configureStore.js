@@ -2,13 +2,13 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
-import api from '../middleware/api'
-
+import api from '../middleware/api';
+import { sagaMiddleware } from './../sagas';
 
 /**
  * 所有中间件
  */
-let middleware = applyMiddleware(thunk, api, createLogger());
+let middleware = applyMiddleware(thunk, api, createLogger(), sagaMiddleware);
 
 //debug
 if (module.hot) {
