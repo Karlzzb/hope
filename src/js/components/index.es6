@@ -11,11 +11,11 @@ import Menu from './Menu/Menu';
 //import Title from './Title/Title';
 //import Button from './Button/Button';
 //import DataTable from './Table/DataTable';
-//import Loading from './Loading/Loading';
+import Loading from './Loading/Loading';
 //import ButtonIcon from './Button/ButtonIcon';
 //import Dialog from './Dialog/Dialog';
 //import ButtonFlat from './Button/ButtonFlat';
-//import Info from './Info/Info';
+import Info from './Info/Info';
 //import ConfirmDialog from './Dialog/ConfirmDialog';
 //import Footer from './Footer/Footer';
 
@@ -23,4 +23,4 @@ import Menu from './Menu/Menu';
 
 import {Tabs, Tab} from 'material-ui/Tabs';
 
-export { Header, Menu, Tabs, Tab }
+export { Header, Menu, Loading, Info, Tabs, Tab }

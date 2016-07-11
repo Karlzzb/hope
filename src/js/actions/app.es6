@@ -4,6 +4,9 @@
 
 export const appAN  = {
 	OPEN_MENU : "app/OPEN_MENU",
+	SET_TEST : "app/SET_TEST",
+	SET_INFO : "app/SET_INFO",
+	CLOSE_INFO : "app/CLOSE_INFO"
 };
 
 const appAct = {
@@ -11,6 +14,10 @@ const appAct = {
 	openMenu : value => ({
 		type : appAN.OPEN_MENU,
 		value
+	}),
+	// 关闭提示框信息
+	closeInfo : () => ({
+		type : appAN.CLOSE_INFO
 	})
 };
 

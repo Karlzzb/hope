@@ -1,25 +1,32 @@
 /**
  * Created by yvan on 16/7/8.
  */
-import React, {Component,PropTypes} from 'react';
-import { connect } from 'react-redux';
-import { Tabs, Tab } from './../components';
+import React, {Component,PropTypes} from 'react'
+//import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { Tabs, Tab } from './../components'
 
-import ActionGrade from 'material-ui/svg-icons/action/grade';
-import ActionThumbUp from 'material-ui/svg-icons/action/thumb-up';
-import ActionViewModule from 'material-ui/svg-icons/action/view-module';
+import ActionGrade from 'material-ui/svg-icons/action/grade'
+import ActionThumbUp from 'material-ui/svg-icons/action/thumb-up'
+import ActionViewModule from 'material-ui/svg-icons/action/view-module'
 
 //导入action
-import { goodsAct } from './../actions';
+import { goodsAct, fetchData } from './../actions'
+import { appAN } from './../actions/app'
 
 class CoodsList extends Component {
 
-	changeTab() {
-
+	componentWillMount() {
+		const {dispatch} = this.props;
+		dispatch(fetchData({
+			url : "https://api.github.com/users/mralexgray/repos",
+			successAction : appAN.SET_TEST
+		}));
 	}
 
 	render() {
 		const { openTab, dispatch } = this.props;
+
 		return (
 			<Tabs
 				value={openTab}
@@ -36,9 +43,18 @@ class CoodsList extends Component {
 				<Tab label="Recommend" value="Recommend" icon={<ActionGrade />}>
 					<div>
 						<h2 >Controllable Tab B</h2>
-						<p>
-							2
-						</p>
+						<div>
+							<button onClick={()=>dispatch(fetchData({
+								url : "http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000357-001",
+								successAction : appAN.SET_TEST
+							}))}>请求失败DEMO</button>
+
+							<button onClick={()=>dispatch(fetchData({
+								url : "https://api.github.com/users/mralexgray/repos",
+								successAction : appAN.SET_TEST,
+								showInfo : true
+							}))}>请求成功DEMO</button>
+						</div>
 					</div>
 				</Tab>
 				<Tab label="Classification" value="Classification" icon={<ActionViewModule />}>
@@ -58,5 +74,9 @@ class CoodsList extends Component {
 let mapStateToProps = state => ({
 	openTab : state.goodsState.openTab
 });
+
+//let mapDispatchToProps = dispatch => ({
+//	fetchData: bindActionCreators(fetchData, dispatch)
+//});
 
 export default connect(mapStateToProps)(CoodsList);

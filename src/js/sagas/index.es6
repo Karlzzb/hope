@@ -2,7 +2,6 @@
  * Created by yvan on 16/7/10.
  */
 
-import createSagaMiddleware from 'redux-saga';
-import helloSaga from './../sagas/saga';
+import sagaFetch from './fetch'
 
-export const sagaMiddleware = createSagaMiddleware(helloSaga);
+export { sagaFetch }

@@ -4,5 +4,6 @@
 
 import appAct from './app';
 import goodsAct from './goods';
+import { fetchData } from './fetch';
 
-export { appAct, goodsAct }
+export { appAct, goodsAct, fetchData }

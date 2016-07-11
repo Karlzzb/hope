@@ -1,10 +1,17 @@
 /**
  * Created by yvan on 16/6/8.
  */
-import React from 'react';
+import React, {PropTypes} from 'react';
 import './loading.scss';
 
 export default class Loading extends React.Component {
+	static propTypes = {
+		show : PropTypes.bool
+	};
+
+	static defaultProps = {
+		show : false
+	};
 	render() {
 		if(this.props.show) {
 			return (

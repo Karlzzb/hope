@@ -15,7 +15,7 @@ const styles = {
 export default class Info extends React.Component {
 	static propTypes = {
 		msg : PropTypes.string.isRequired,
-		closeInfo : PropTypes.func.isRequired,
+		closeInfo : PropTypes.func,
 		closeTime : PropTypes.number
 	};
 
@@ -23,13 +23,6 @@ export default class Info extends React.Component {
 		infoType : "success",
 		closeTime : 3000
 	};
-
-	// 构造
-	constructor(props) {
-		super(props);
-	}
-
-	//关闭提示框
 
 	render() {
 		const {closeTime, infoType, msg, closeInfo, show} = this.props;
